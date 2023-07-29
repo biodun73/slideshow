@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide show</title>
+    <link rel="stylesheet" href="../YOUTUBE/COLOR/styleCOL.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: rgb(1, 26, 26);
+        }
+        .container{
+            position: relative;
+            max-width: 1000px;
+            height: 450px;
+            margin-left: 250px;
+            margin-top: 50px;
+        }
+        .subcon{
+            position: absolute;
+            display: block;
+        }
+        .dash{
+            cursor: pointer;
+            width: 50px;
+            height: 8px;
+            margin-top: 10px;
+            background-color: #f5f4f2;
+            display: inline-block;
+        }
+        .change{
+            background-color: #fa8e9c;
+        }
+        .fade{
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @keyframes fade{
+            from{opacity: 0.5;}
+            to{opacity: 2;}
+        }
+    </style>
+</head>
+<body>
+        <!--container-->
+        <div class="container">
+            <div class="subcon fade">
+                <img src="../HTML/images/antelope.jpg" alt="" style="width: 900px; height: 450px; border-radius: 10px;">
+            </div>
+            <div class="subcon fade">
+              <img src="../HTML/images/elephant.jpg" alt="" style="width: 900px; height: 450px; border-radius: 10px;">
+          </div>
+          <div class="subcon fade">
+              <img src="../HTML/images/lion.jpg" alt="" style="width: 900px; height: 450px; border-radius: 10px;">
+          </div>
+          <div class="subcon fade">
+              <img src="../HTML/images/zebra.jpg" alt="" style="width: 900px; height: 450px; border-radius: 10px;">
+          </div>
+      </div>
+      <!--slider-->
+      <div style="text-align: center;">
+             <span class="dash"></span>
+             <span class="dash"></span>
+             <span class="dash"></span>
+             <span class="dash"></span>
+      </div>
+      <!--javascript-->
+      <script>
+          //variable//
+          var slides=0;
+          function mslides(){
+              var i;
+              var slider = document.getElementsByClassName("subcon");
+              var dash = document.getElementsByClassName("dash");
+              //for loop//
+              for (i=0;i < slider.length;i++) {
+                   slider[i].style.display = "none";     
+              }
+              slides++;
+  
+              if (slides > slider.length) {
+                  slides = 1;
+              }
+              //for loop for slider//
+              for (i =0; i < dash.length;i++) {
+                  dash[i].className = dash[i].className.replace(" change","");  
+              }
+              slider[slides-1].style.display="block";
+              dash[slides-1].className += " change";
+              setTimeout(mslides,3000);
+          }
+          mslides();
+      </script>
+</body>
+</html>
